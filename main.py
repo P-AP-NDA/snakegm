@@ -10,7 +10,7 @@ pygame.init()
 #Creating window
 window = pygame.display.set_mode((800,600))
 
-#Var
+#Variables
 color = [255, 0, 0]
 x = 100
 y =100
