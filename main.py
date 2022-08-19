@@ -1,54 +1,79 @@
-#Importing pygame module
+
 import pygame
 
-#importing sys module
-import sys
+import random
 
-#Initalizing pygame
 pygame.init()
 
-#Creating window
-window = pygame.display.set_mode((800,600))
+win = pygame.display.set_mode((500, 500))
 
-#Variables
-color = [255, 0, 0]
-x = 100
-y =100
+x = 200
+y = 200
 
-#sdsasadas
-player = pygame.draw.rect(window, color, pygame.Rect(x, y, 25, 25))
-pygame.display.flip()
+ox = 100
+oy = 100
 
-#Active loop
-while True:
+width = 20
+height = 20
+
+vel = 2
+
+running = True
+
+while running:
+
+    pygame.time.delay(10)
 
     for event in pygame.event.get():
+
+
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
-        elif event.type == pygame.K_ESCAPE:
-            pygame.quit()
-            sys.exist()
+            run = False
+
+    keys = pygame.key.get_pressed()
+
+    #Player keeps moving
+
+
+    if keys[pygame.K_LEFT] and x > 0:
+
+        x -= vel
+
+
+    if keys[pygame.K_RIGHT] and x < 500 - width:
+
+        x += vel
+
+
+    if keys[pygame.K_UP] and y > 0:
+
+        y -= vel
+
+
+    if keys[pygame.K_DOWN] and y < 500 - height:
+
+        y += vel
+
+
+    win.fill((0, 0, 0))
+
+
+    pla = pygame.draw.rect(win, (255, 0, 0), (x, y, width, height))
+    app = pygame.draw.rect(win, (55, 89, 255), (ox, oy, width, height))
+
+    random_coord = (random.uniform(0,500), random.uniform(0,500))
+
+
+    if pla.colliderect(app):
+        print("collision!")
 
 
 
-        if event.type == pygame.KEYDOWN:
+    pygame.display.update()
 
 
-            if event.key == pygame.K_a:
-                print("Key a has been press")
-
-
-            if event.key == pygame.K_j:
-                print("Key j has been press")
-
-
-            if event.key == pygame.K_p:
-                print("Key p has been press")
-
-            if event.key == pygame.K_b:
-                print("Key b has bveen press")
-
+pygame.quit()
 
 
 
