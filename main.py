@@ -119,7 +119,7 @@ while running:
         x2 = random.randint(0,400)
         y2 = random.randint(0,400)
 
-    # Score
+    #Score
     if player.colliderect(apple):
         Score += 1
         length_snake += 5
