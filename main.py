@@ -15,6 +15,8 @@ y2 = 100
 
 white = (255, 255, 255)
 black = (0, 0, 0)
+blue = (95, 147, 143)
+red = (255, 0, 0)
 width = 15
 height = 15
 
@@ -35,20 +37,31 @@ def snake(snake_piece, snake_List):
 
 running = True
 game_over = False
-game_close = False
+game_continue = False
 
 clock = pygame.time.Clock()
 
 
 while running:
 
-    '''while not game_over:
+    while game_over == True:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    game_close = True
-                    game_over = False
-                    '''
+                if event.key == pygame.K_a:
+                    game_over = True
+                    game_continue = False
+                    running = False
+                    pygame.display.update()
+                elif event.key == pygame.K_b:
+                    running == True
+                    pygame.display.update()
+
+    if game_continue == True:
+        running == True
+    elif game_over == True:
+        running = False
+        pygame.quit()
+
 
     pygame.time.delay(10)
 
@@ -91,6 +104,10 @@ while running:
     if len(snake_List) > length_snake:
         del snake_List[0]
 
+    for x in snake_List[:-1]:
+        if x == snake_piece:
+            print("pooop")
+
     snake(snake_block, snake_List)
 
 
@@ -110,17 +127,19 @@ while running:
 
     #Border detection
     if x1 >= 470 and pygame.K_RIGHT:
-        pygame.QUIT()
-        quit()
+        win.fill(white)
+        game_over == True
+        lose_screentxt = font.render("You Lose! q - QUIT or p - PLAY AGAIN?", True, red)
+        losetext = lose_screentxt.get_rect()
+        losetext.center = (250, 250)
+        win_surface.blit(lose_screentxt, losetext)
     elif x1 <= 3 and pygame.K_LEFT:
-        pygame.QUIT()
-        quit()
+        win.fill(white)
     elif y1 >= 490 and pygame.K_DOWN:
-        pygame.QUIT()
-        quit()
+        win.fill(white)
     elif y1 <= 3 and pygame.K_UP:
-        pygame.QUIT()
-        quit()
+        win.fill(white)
+
 
     pygame.display.update()
 
