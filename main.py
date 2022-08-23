@@ -13,6 +13,8 @@ y1 = 150
 x2 = 100
 y2 = 100
 
+mouse_pos = pygame.mouse.get_pressed()
+
 white = (255, 255, 255)
 black = (0, 0, 0)
 blue = (95, 147, 143)
@@ -20,8 +22,12 @@ red = (255, 0, 0)
 width = 15
 height = 15
 
+
 x1_change = 0
 y1_change = 0
+
+is_over = False
+
 
 snake_block = 15
 
@@ -106,7 +112,13 @@ while running:
 
     for x in snake_List[:-1]:
         if x == snake_piece:
-            print("pooop")
+            win.fill(white)
+            lose = pygame.draw.rect(win, red, [170, 250, 150, 40])
+            play = pygame.draw.rect(win, black, [145, 200, 200, 40])
+            game_over == True
+            is_over == True
+            x1 = 0
+            y1 = 0
 
     snake(snake_block, snake_List)
 
@@ -128,17 +140,28 @@ while running:
     #Border detection
     if x1 >= 470 and pygame.K_RIGHT:
         win.fill(white)
+        lose = pygame.draw.rect(win, red, [170, 250, 150, 40])
+        play = pygame.draw.rect(win, black, [145, 200, 200, 40])
         game_over == True
-        lose_screentxt = font.render("You Lose! q - QUIT or p - PLAY AGAIN?", True, red)
-        losetext = lose_screentxt.get_rect()
-        losetext.center = (250, 250)
-        win_surface.blit(lose_screentxt, losetext)
+        is_over == True
     elif x1 <= 3 and pygame.K_LEFT:
         win.fill(white)
+        lose = pygame.draw.rect(win, red, [170, 250, 150, 40])
+        play = pygame.draw.rect(win, black, [145, 200, 200, 40])
+        game_over == True
+        is_over == True
     elif y1 >= 490 and pygame.K_DOWN:
         win.fill(white)
+        lose = pygame.draw.rect(win, red, [170, 250, 150, 40])
+        play = pygame.draw.rect(win, black, [145, 200, 200, 40])
+        game_over == True
+        is_over == True
     elif y1 <= 3 and pygame.K_UP:
         win.fill(white)
+        lose = pygame.draw.rect(win, red, [170, 250, 150, 40])
+        play = pygame.draw.rect(win, black, [145, 200, 200, 40])
+        game_over == True
+        is_over == True
 
 
     pygame.display.update()
